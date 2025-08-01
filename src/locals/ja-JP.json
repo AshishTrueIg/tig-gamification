@@ -1,0 +1,7 @@
+{
+	"InternalServerError": "InternalServerError",
+	"Internal Server Error": "Internal Server Error",
+	"RequestInputValidationError": "RequestInputValidationError",
+	"Please check the request data": "Please check the request data",
+	"TypeError": "TypeError"
+}

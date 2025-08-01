@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.socket.io/4.5.0/socket.io.min.js">
+
+  </script>
+
+
+</head>
+
+<body>
+  <script>
+    const SOCKET_NAMESPACES = {
+      DEMO: '/demo'
+    }
+
+    const SOCKET_LISTENERS = {
+      DEMO_HELLO_WORLD: SOCKET_NAMESPACES.DEMO + '/helloWorld'
+    }
+
+    const SOCKET_EMITTERS = {
+      DEMO_HELLO_WORLD: SOCKET_NAMESPACES.DEMO + '/helloWorld'
+    }
+
+
+    const demoSocket = io('ws://localhost:8080/demo', {
+      transports: ['polling', 'websocket'],
+      extraHeaders: {
+        "accept-language": "fr-FR" // WARN: this will be ignored in a browser
+      }
+    })
+
+    demoSocket.on(SOCKET_EMITTERS.DEMO_HELLO_WORLD, (data) => console.log(SOCKET_EMITTERS.DEMO_HELLO_WORLD, data))
+
+    demoSocket.emit(SOCKET_LISTENERS.DEMO_HELLO_WORLD, { name: 'Dummy User' }, (data) => console.log(SOCKET_LISTENERS.DEMO_HELLO_WORLD, data))
+  </script>
+</body>
+
+</html>
